@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Surat Ucapan Terima Kasih</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        form {
+            border: 2px solid #4CAF50;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .surat-container {
+            border: 2px solid #2196F3;
+            padding: 20px;
+            border-radius: 10px;
+            width: 500px;
+            margin: 20px auto;
+            background-color: #fff;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #4CAF50;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+    <script>
+        // Function to create the letter
+        function buat_surat_asisten(jenis_kelamin, nama_asisten, nama_pengirim) {
+            let salam, kata_ganti;
+            if (jenis_kelamin.toLowerCase() === "laki-laki") {
+                salam = "Abang";
+                kata_ganti = nama_asisten;
+            } else if (jenis_kelamin.toLowerCase() === "perempuan") {
+                salam = "Kakak";
+                kata_ganti = nama_asisten;
+            } else {
+                return "Jenis kelamin tidak valid. Masukkan 'laki-laki' atau 'perempuan'.";
+            }
+
+            let surat = `
+Yth. ${salam} ${nama_asisten},
+Asisten Laboratorium Algoritma dan Pemrograman Komputer
+
+Dengan hormat,
+
+ Saya, ${nama_pengirim}, ingin menyampaikan rasa terima kasih yang sebesar-besarnya kepada ${salam} ${kata_ganti} yang telah membantu dan membimbing saya selama proses pembelajaran di praktikum ALPRO. ${salam} ${kata_ganti.charAt(0).toUpperCase() + kata_ganti.slice(1)} selalu memberikan penjelasan yang jelas dan sabar dalam menjawab pertanyaan saya.
+
+ Saya berharap ${salam} ${kata_ganti} terus sukses dalam segala bidang, dan semoga kerja keras yang ${salam} ${kata_ganti} lakukan menjadi inspirasi bagi banyak mahasiswa lainnya.
+
+ Terima kasih sekali lagi atas bimbingannya, ${salam} ${nama_asisten}.
+
+Hormat saya,
+${nama_pengirim}
+            `;
+            return surat;
+        }
+
+        // Function to handle form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            let nama_asisten = document.getElementById('nama_asisten').value;
+            let jenis_kelamin = document.getElementById('jenis_kelamin').value;
+            let nama_pengirim = document.getElementById('nama_pengirim').value;
+
+            let surat = buat_surat_asisten(jenis_kelamin, nama_asisten, nama_pengirim);
+            document.getElementById('isi_surat').innerText = surat;
+            document.getElementById('nama_penerima').innerText = nama_asisten;
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="handleFormSubmit(event)">
+        <label for="nama_asisten">Masukkan nama penerima surat:</label>
+        <input type="text" id="nama_asisten" name="nama_asisten">
+
+        <label for="jenis_kelamin">Masukkan jenis kelamin (laki-laki/perempuan):</label>
+        <input type="text" id="jenis_kelamin" name="jenis_kelamin">
+
+        <label for="nama_pengirim">Masukkan nama pengirim surat:</label>
+        <input type="text" id="nama_pengirim" name="nama_pengirim">
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div class="surat-container">
+        <h2>Isi Surat:</h2>
+        <pre id="isi_surat"></pre>
+    </div>
+</body>
+</html>
+
